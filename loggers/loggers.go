@@ -5,28 +5,18 @@ import (
 	"os"
 )
 
-// CarParkSysLogger is an interface for all logging mechanisms
-type CarParkSysLogger interface {
-	GetLogger() *log.Logger
+type CarLogger struct {
+	InfoLogger  *log.Logger
+	DebugLogger *log.Logger
+	WarnLogger  *log.Logger
+	ErrorLogger *log.Logger
 }
 
-type InfoLogger struct {
-	logger *log.Logger
-}
-
-type DebugLogger struct {
-	logger *log.Logger
-}
-
-type WarnLogger struct {
-	logger *log.Logger
-}
-
-type ErrorLogger struct {
-	logger *log.Logger
-}
-
-// GetLogger for logging of CarParkingSystem Microservice
-func (info *InfoLogger) GetLogger() *InfoLogger {
-	return &InfoLogger{log.New(os.Stdout, "INFO: ", log.LstdFlags)}
+func GetLogger() *CarLogger {
+	cl := &CarLogger{}
+	cl.InfoLogger = log.New(os.Stdout, "INFO: CarParkingSystem-", log.LstdFlags)
+	cl.DebugLogger = log.New(os.Stdout, "DEBUG: CarParkingSystem-", log.LstdFlags)
+	cl.WarnLogger = log.New(os.Stdout, "WARN: CarParkingSystem-", log.LstdFlags)
+	cl.ErrorLogger = log.New(os.Stdout, "ERROR: CarParkingSystem-", log.LstdFlags)
+	return cl
 }
