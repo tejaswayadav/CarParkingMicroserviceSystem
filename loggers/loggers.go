@@ -5,15 +5,17 @@ import (
 	"os"
 )
 
-type CarLogger struct {
+// CarParkingSystemLogger is a logger struct
+type CarParkingSystemLogger struct {
 	InfoLogger  *log.Logger
 	DebugLogger *log.Logger
 	WarnLogger  *log.Logger
 	ErrorLogger *log.Logger
 }
 
-func GetLogger() *CarLogger {
-	cl := &CarLogger{}
+// GetLogger provides with a new instance of CarParkingSystemLogger
+func GetLogger() *CarParkingSystemLogger {
+	cl := &CarParkingSystemLogger{}
 	cl.InfoLogger = log.New(os.Stdout, "INFO: CarParkingSystem-", log.LstdFlags)
 	cl.DebugLogger = log.New(os.Stdout, "DEBUG: CarParkingSystem-", log.LstdFlags)
 	cl.WarnLogger = log.New(os.Stdout, "WARN: CarParkingSystem-", log.LstdFlags)
